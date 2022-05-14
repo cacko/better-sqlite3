@@ -93,7 +93,13 @@
               # This statically links libcrypto, whereas -lcrypto would dynamically link it
               '<(SHARED_INTERMEDIATE_DIR)/sqlite3/OpenSSL-mac-<(target_arch)/libcrypto.a'
             ]
-          }
+          },
+          'defines': [
+            # This is currently required by better-sqlite3.
+            'SQLITE_ENABLE_COLUMN_METADATA',
+            "OPENSSL_API_COMPAT=0x10100001L",
+            "OPENSSL_CONFIGURED_API=0x30000000L"
+          ],
         },
         { # Linux
           'link_settings': {
